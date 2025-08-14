@@ -21,6 +21,8 @@ This project automates **mask generation** to identify car boundaries, reducing 
 /train_masks/train_masks/.gif
 
 **Source:** [Carvana Image Masking Challenge](https://www.kaggle.com/competitions/carvana-image-masking-challenge)
+## Notebook
+You can view and run the full notebook on Kaggle here: [Carvana Image Masking Notebook](<https://www.kaggle.com/code/zainabelsayedtaha/carvana-image-masking#2nd-model:-Unet-Model-+-Resnet-50-Model>)
 
 ---
 
