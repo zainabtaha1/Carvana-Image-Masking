@@ -42,23 +42,70 @@ pip install -r requirements.txt
 
 ---
 
-## Dependences
+Dependencies: Python 3.x, PyTorch, Torchvision, OpenCV, NumPy, Matplotlib, PIL, Seaborn, scikit-learn
 
-* Python 3.x
+Usage
+1. Prepare Dataset
+DATA_DIR = '/kaggle/working/'
+TRAIN_IMG_DIR = os.path.join(DATA_DIR, 'train/train')
+TRAIN_MASK_DIR = os.path.join(DATA_DIR, 'train_masks/train_masks')
 
-* PyTorch
+2. Training
+model = UNet().to(DEVICE)
+optimizer = torch.optim.Adam(model.parameters(), lr=1e-3)
+scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau(optimizer, factor=0.5, patience=3, verbose=True)
+# Train for 15 epochs
 
-* Torchvision
 
-* OpenCV
+Or using U-Net + ResNet50 encoder:
 
-* NumPy
+model1 = UNetResNet50(num_classes=1, pretrained=True).to(DEVICE)
+# Train for 5 epochs
 
-* Matplotlib
+3. Evaluation
 
-* PIL
+Compute metrics:
 
-* Seaborn
+Loss & Val IoU
 
-* scikit-learn
+Confusion Matrix
 
+Classification Report
+
+from sklearn.metrics import confusion_matrix, classification_report
+
+4. Visualization
+
+Visualize predictions with ground truth:
+
+predict_and_visualize(model, SegmentationDataset(val_imgs, val_masks_p, IMG_SIZE), num_samples=3)
+
+
+Overlay masks with colors:
+
+Green: Ground truth
+
+Red: Predicted mask
+
+Model Architecture
+
+U-Net: Encoder-decoder with skip connections
+
+U-Net + ResNet50: Uses ResNet50 pretrained as encoder for better feature extraction
+
+Loss: Combination of BCEWithLogitsLoss and Dice Loss
+
+Optimizer: Adam
+
+Results
+
+Training and validation loss curves
+
+Validation IoU curve
+
+Confusion matrix heatmap
+
+Sample prediction visualization
+
+Saving the Model
+torch.save(model.state_dict(), "model.pth")
