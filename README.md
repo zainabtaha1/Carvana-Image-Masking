@@ -40,7 +40,9 @@ git clone <your-repo-link>
 cd Carvana-Image-Masking
 pip install -r requirements.txt
 
-## Dependencies:
+---
+
+## Dependences
 
 * Python 3.x
 
